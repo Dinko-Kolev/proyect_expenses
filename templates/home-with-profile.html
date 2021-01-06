@@ -15,13 +15,13 @@
     <div>
         <h1>Summary</h1><h1>
         <ul class="expenses-list">
-        <li class="blue"> {{ profile.budget }}</li>
+        <li class="blue"> {{ profile.budget }}$</li>
+        {% for expense in expenses %}
+            <li class="red"> -{{ expense.price }}$</li>
         
-            <li class="red"> - 1000.0$</li>
-        
-            <li class="red"> - 400.0$</li>
-        
-        <li class="green">= 100.0$ left</li>
+            
+        {% endfor %}
+        <li class="green">= {{ left }}$ left</li>
         </ul>
         </h1>
     </div> 
