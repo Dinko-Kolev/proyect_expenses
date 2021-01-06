@@ -10,60 +10,47 @@
         
     </ul>
 </nav>
-    <div class="body">
+<div class="body">
+    {% if expenses %}
+    <div>
+        <h1>Summary</h1><h1>
+        <ul class="expenses-list">
+        <li class="blue"> {{ profile.budget }}</li>
         
-
-<div>
-    <h1>Summary</h1><h1>
-    <ul class="expenses-list">
-    <li class="blue">1500$</li>
-    
-        <li class="red"> - 1000.0$</li>
-    
-        <li class="red"> - 400.0$</li>
-    
-    <li class="green">= 100.0$ left</li>
-    </ul>
-</h1></div>
-
-<h1>My Expenses</h1>
-<a href="/create">Add Expense</a>
-<div class="expenses-container">
-    
+            <li class="red"> - 1000.0$</li>
+        
+            <li class="red"> - 400.0$</li>
+        
+        <li class="green">= 100.0$ left</li>
+        </ul>
+        </h1>
+    </div> 
+    {% endif %} 
+    <h1>My Expenses</h1>
+    <a href="/create" class="button">Add Expense</a>
+    {% if expenses %}
+    <div class="expenses-container">
+    {% for expense in expenses %}
         <div class="expense-container">
-    <h2>Electrical Piano</h2>
-    <hr>
-    <img src="https://www.pngkit.com/png/full/307-3075914_free-piano-clipart-piano-png.png">
-    <p>I bought myself a new piano to improve my skills</p>
-    <div class="expense-detail">
-        <div>
-            <p>Price: 1000.0$</p>
-        </div>
-        <div class="right">
-            <a class="button edit" href="/edit/3">Edit</a>
-            <a class="button delete" href="/delete/3">Delete</a>
-        </div>
+            <h2>{{ expense.title }}</h2>
+            <hr>
+             <img src="{{ expense.image_url }}">
+            <p>{{ expense.description }}</p>
+            <div class="expense-detail">
+                 <div>
+                    <p>Price: {{ expense.price }}$</p>
+                 </div>
+                <div class="right">
+                    <a class="button edit" href="/edit/3">Edit</a>
+                    <a class="button delete" href="/delete/3">Delete</a>
+                </div>
+            </div>
+         </div>
+    {% endfor %}
     </div>
-</div>
-    
-        <div class="expense-container">
-    <h2>TV</h2>
-    <hr>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxrJL-MNt-t3inmyQJKzgBZLEM5v1Y35QGXQ&usqp=CAU">
-    <p>My old tv broke, so I bought myself a new one.</p>
-    <div class="expense-detail">
-        <div>
-            <p>Price: 400.0$</p>
-        </div>
-        <div class="right">
-            <a class="button edit" href="/edit/4">Edit</a>
-           <a class="button delete" href="/delete/4">Delete</a>
-        </div>
-    </div>
-</div>
-    
-</div>
+    {% else %}
 
-    </div>
+    {% endif %}
+</div>
 
  {% endblock  %}

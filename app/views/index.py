@@ -1,14 +1,21 @@
 from django.shortcuts import render
-from app.models import *
+from app.models import Profile,Expense
+from app.forms.profiles import *
 # Create your views here.
 
 
 def index(request):
-    profiles= Profile.objects.all()
-    profiles_count= profiles.count()
-    if profiles_count >0:
-        return render(request, 'home-with-profile.html')
-    elif profiles_count==0:
-        return render(request, 'home-no-profile.html')
+    
+    
+   
+    if Profile.objects.exists():
+        profile=Profile.objects.all()[0]
+        expenses=Expense.objects.all()
+        context={
+            'expenses':expenses,
+            'form':ProfileForm(),
+            'profile':profile,
+        }
+        return render(request, 'home-with-profile.html',context)
     else:
-        print('ERROR!!!')
+        return render(request, 'home-no-profile.html')
