@@ -27,7 +27,7 @@
     </div> 
     {% endif %} 
     <h1>My Expenses</h1>
-    <a href="/create" class="button">Add Expense</a>
+    <a href="{% url 'create expense' %}" class="button">Add Expense</a>
     {% if expenses %}
     <div class="expenses-container">
     {% for expense in expenses %}
@@ -41,8 +41,8 @@
                     <p>Price: {{ expense.price }}$</p>
                  </div>
                 <div class="right">
-                    <a class="button edit" href="/edit/3">Edit</a>
-                    <a class="button delete" href="/delete/3">Delete</a>
+                    <a class="button edit" href="{% url 'edit expense' expense.id %}">Edit</a>
+                    <a class="button delete" href="{% url 'delete expense' expense.id %}">Delete</a>
                 </div>
             </div>
          </div>

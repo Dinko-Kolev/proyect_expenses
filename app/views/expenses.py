@@ -1,18 +1,32 @@
 from django.shortcuts import render
-from app.models import *
-# Create your views here.
+from app.forms.expenses import ExpensesForm
+from django.shortcuts import redirect
 
 
+# Create your view here.
 
-  
+
 def create_expense(request):
+    if request.method == 'GET':
+        context = {
+            'form': ExpensesForm(),
+        }
+        return render(request, 'expense-create.html', context)
+    else:
+        form = ExpensesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
 
-    return render(request, 'expense-create.html')
-    
+        context = {
+            'form': form,
+        }
+        return render(request, 'expense-create.html', context)
+
+
 def edit_expense(request):
+    return render(request, 'expense-edit.html')
 
-    return render(request, 'expenses-edit.html')
-  
+
 def delete_expense(request):
-
-    return render(request, 'expenses-delete.html')
+    return render(request, 'expense-delete.html')
