@@ -14,17 +14,9 @@
         
 <h1>Enter your new data</h1>
 <div class="form">
-    <form method="POST">
-        <input type="hidden" name="csrfmiddlewaretoken" value="M6BlBJtidtTAjIVkeKKrO0pzGsJVBeMuJUjjBOd11b8tiULJ0qeyFSClYJH4npVf">
-        <label for="budget">Budget</label>
-        <input type="number" name="budget" value="1500" required="" id="id_budget">
-
-        <label for="firstName">First Name</label>
-        <input type="text" name="first_name" value="Tanya" maxlength="15" required="" id="id_first_name">
-
-        <label for="lastName">Last Name</label>
-        <input type="text" name="last_name" value="Staneva" maxlength="15" required="" id="id_last_name">
-
+    <form method="POST" action="{% url 'profile edit'  %}">
+        {{ form }}
+        {% csrf_token %}
         <input type="submit" value="Edit">
     </form>
 </div>

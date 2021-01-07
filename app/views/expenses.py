@@ -1,8 +1,6 @@
 from django.shortcuts import render
-from app.forms.expenses import ExpensesForm
+from app.forms.expenses import ExpensesForm,DeleteExpenseForm
 from django.shortcuts import redirect
-
-# Create your view here.
 from app.models import Expense
 
 
@@ -51,18 +49,11 @@ def delete_expense(request, pk):
     if request.method == 'GET':
         context = {
             'expense': expense,
-            'form': ExpensesForm(instance=expense),
+            'form': DeleteExpenseForm(instance=expense),
         }
         return render(request, 'expense-delete.html', context)
 
     else:
-        form = ExpensesForm(request.POST, instance=expense)
-        if form.is_valid():
-            expense.delete()
-            return redirect('index')
+        expense.delete()
+        return redirect('index')
 
-        context = {
-            'expense': expense,
-            'form': form,
-        }
-        return render(request, 'expense-delete.html', context)

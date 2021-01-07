@@ -15,17 +15,17 @@
 <h1>Your Profile</h1>
 <div class="expenses-container">
     <div class="expense-container">
-        <h2>Tanya Staneva</h2>
+        <h2>{{profile.first_name}} {{ profile.last_name }}</h2>
         <hr>
         <img src="{% static '/images/user.png' %}">
         <p>In your profile you can edit your profile data</p>
         <div class="expense-detail">
             <div>
-                <p>Budget Left: 100.0$</p>
+                <p>Budget Left: {{ expenses }}$</p>
             </div>
             <div class="right">
-                <a class="button edit" href="/profile/edit">Edit Profile</a>
-                <a class="button delete" href="/profile/delete">Delete Profile</a>
+                <a class="button edit" href="{% url 'profile edit'%}">Edit Profile</a>
+                <a class="button delete" href="{% url 'profile delete'%}">Delete Profile</a>
             </div>
         </div>
     </div>

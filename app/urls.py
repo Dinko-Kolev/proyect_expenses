@@ -13,7 +13,7 @@ urlpatterns = [
     # profile
     path('profile/', profile_index, name='profile index'),
     path('profile/create', profile_create, name="profile create"),
-    path('profile/edit', profile_edit, name='profile edit'),
+    path('profile/edit/', profile_edit, name='profile edit'),
     path('profile/delete', profile_delete, name='profile delete'),
 
 ]
